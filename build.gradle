@@ -1,0 +1,20 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    apply from: './dependencies.gradle'
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$Versions.gradleBuildToolVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$Versions.kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$Versions.daggerHiltCoreVersion"
+        classpath "com.google.gms:google-services:$Versions.googleServicesVersion"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$Versions.firebaseCrashlyticsPluginVersion"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

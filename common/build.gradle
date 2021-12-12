@@ -1,0 +1,84 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: '../dependencies.gradle'
+apply from: '../projectConfig.gradle'
+apply from: '../properties-util.gradle'
+apply from: '../keystore-utils.gradle'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        beta {
+        }
+        product {
+        }
+    }
+
+    signingConfigs {
+        release {
+            storePassword readStorePassword()
+            keyPassword readKeyPassword()
+            keyAlias readKeyAlias()
+            storeFile file("../app/key/weather.keystore")
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("java.lang.String", 'BASE_URL', '"https://api.openweathermap.org/data/2.5/"')
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("java.lang.String", 'BASE_URL', '"https://api.openweathermap.org/data/2.5/"')
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    // AndroidX & Jetpack
+    implementation "androidx.core:core-ktx:$Versions.coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$Versions.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$Versions.constraintVersion"
+    implementation "com.google.android.material:material:$Versions.materialVersion"
+
+    // Testing
+    testImplementation "junit:junit:$Versions.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$Versions.extJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$Versions.espressoVersion"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$Versions.daggerHiltCoreVersion"
+    kapt "com.google.dagger:hilt-compiler:$Versions.daggerHiltCoreVersion"
+}

@@ -1,0 +1,3 @@
+package com.yucelt.base.component
+
+interface BaseComponentEventHandler

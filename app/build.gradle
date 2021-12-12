@@ -1,0 +1,116 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+apply from: '../dependencies.gradle'
+apply from: '../projectConfig.gradle'
+apply from: '../properties-util.gradle'
+apply from: '../keystore-utils.gradle'
+
+android {
+    compileSdk ProjectConfig.compileSdk
+
+    defaultConfig {
+        applicationId "com.yucelt.weather"
+        minSdk ProjectConfig.minSdk
+        targetSdk ProjectConfig.targetSdk
+        versionCode ProjectConfig.versionCode
+        versionName ProjectConfig.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        beta {
+            applicationIdSuffix ".beta"
+            versionNameSuffix ".beta"
+            manifestPlaceholders = [
+                    appName     : "@string/app_name",
+                    appIcon     : "@mipmap/ic_launcher",
+                    appIconRound: "@mipmap/ic_launcher_round"
+            ]
+        }
+        product {
+            manifestPlaceholders = [
+                    appName     : "@string/app_name",
+                    appIcon     : "@mipmap/ic_launcher",
+                    appIconRound: "@mipmap/ic_launcher_round"
+            ]
+        }
+    }
+
+    signingConfigs {
+        release {
+            storePassword readStorePassword()
+            keyPassword readKeyPassword()
+            keyAlias readKeyAlias()
+            storeFile file("../app/key/weather.keystore")
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("java.lang.String", 'BASE_URL', '"https://api.openweathermap.org/data/2.5/"')
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("java.lang.String", 'BASE_URL', '"https://api.openweathermap.org/data/2.5/"')
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation project(path: ':base')
+    implementation project(path: ':common')
+    implementation project(path: ':domain')
+    implementation project(path: ':data')
+
+    // AndroidX & Jetpack
+    implementation "androidx.core:core-ktx:$Versions.coreKtxVersion"
+    implementation "androidx.appcompat:appcompat:$Versions.appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$Versions.constraintVersion"
+    implementation "com.google.android.material:material:$Versions.materialVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$Versions.lifecycleViewmodelVersiom"
+
+    // Testing
+    testImplementation "junit:junit:$Versions.junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$Versions.extJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$Versions.espressoVersion"
+
+    // Multidex
+    implementation "androidx.multidex:multidex:$Versions.multidexVersion"
+
+    // Recyclerview
+    implementation "androidx.recyclerview:recyclerview:$Versions.recyclerViewVersion"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$Versions.daggerHiltCoreVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Versions.daggerHiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$Versions.daggerHiltCoreVersion"
+
+    // Network
+    implementation "com.squareup.moshi:moshi-kotlin:$Versions.moshiVersion"
+    implementation "com.squareup.retrofit2:retrofit:$Versions.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$Versions.retrofitMoshiVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$Versions.interceptorVersion"
+}
