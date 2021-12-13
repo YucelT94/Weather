@@ -55,6 +55,9 @@ ext {
             // Test
             junitVersion                    : '4.13.2',
             extJunitVersion                 : '1.1.3',
-            espressoVersion                 : '3.4.0'
+            espressoVersion                 : '3.4.0',
+
+            // Navigation
+            navigationVersion               : '2.3.5'
     ]
 }

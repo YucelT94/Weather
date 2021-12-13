@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Weather</string>
 
-    <string name="bottom_nav_first">First</string>
-    <string name="bottom_nav_second">Second</string>
-    <string name="bottom_nav_third">Third</string>
-
-    <string name="double_click_to_exit">Çıkmak için tekrar basınız</string>
+    <string name="nav_first">First</string>
+    <string name="nav_second">Second</string>
+    <string name="nav_third">Third</string>
 </resources>

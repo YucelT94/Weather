@@ -80,4 +80,10 @@ dependencies {
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$Versions.daggerHiltCoreVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Versions.daggerHiltVersion"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$Versions.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$Versions.navigationVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$Versions.navigationVersion"
+    androidTestImplementation "androidx.navigation:navigation-testing:$Versions.navigationVersion"
 }

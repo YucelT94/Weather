@@ -113,4 +113,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$Versions.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$Versions.retrofitMoshiVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$Versions.interceptorVersion"
+
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$Versions.navigationVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$Versions.navigationVersion"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$Versions.navigationVersion"
+    androidTestImplementation "androidx.navigation:navigation-testing:$Versions.navigationVersion"
 }

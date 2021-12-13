@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/navigation_first">
+
+    <fragment
+        android:id="@+id/navigation_first"
+        android:name="com.yucelt.weather.ui.first.FirstFragment"
+        android:label="@string/nav_first"
+        tools:layout="@layout/first_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_second"
+        android:name="com.yucelt.weather.ui.second.SecondFragment"
+        android:label="@string/nav_second"
+        tools:layout="@layout/second_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_third"
+        android:name="com.yucelt.weather.ui.third.ThirdFragment"
+        android:label="@string/nav_third"
+        tools:layout="@layout/third_fragment" />
+</navigation>

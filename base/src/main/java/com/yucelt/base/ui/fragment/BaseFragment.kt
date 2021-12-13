@@ -11,16 +11,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import com.yucelt.base.R
 import com.yucelt.base.domain.ResourceState
 import com.yucelt.common.extensions.showToast
-import com.yucelt.common.manager.navigation.NavigationManager
-import javax.inject.Inject
 
 abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
-    @Inject
-    lateinit var navigationManager: NavigationManager
+    lateinit var navigationController: NavController
 
     var dataBinding: DB? = null
     var viewModel: VM? = null
@@ -55,6 +54,7 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel> : Fragment
         this.viewModel = ViewModelProvider(this).get(provideViewModel())
         viewModel?.let { lifecycle.addObserver(it) }
         observeRequestStatus()
+        navigationController = Navigation.findNavController(view)
         this.bindViewModel(this.dataBinding)
     }
 
