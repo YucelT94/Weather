@@ -1,6 +1,6 @@
 package com.yucelt.data.remote
 
-import com.yucelt.data.dto.CityWeatherDto
+import com.yucelt.data.model.dto.CityWeatherDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 

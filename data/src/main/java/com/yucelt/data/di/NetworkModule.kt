@@ -5,10 +5,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.yucelt.common.util.Constant
 import com.yucelt.data.BuildConfig
-import com.yucelt.data.datasource.ApiDataRepository
 import com.yucelt.data.interceptor.TokenInterceptor
 import com.yucelt.data.remote.ApiService
-import com.yucelt.domain.repository.ApiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +21,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+object NetworkModule {
     @Provides
     @Singleton
     fun provideMoshi(): Moshi = Moshi.Builder()

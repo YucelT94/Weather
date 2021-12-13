@@ -1,9 +1,12 @@
 package com.yucelt.data.di
 
-import com.yucelt.data.datasource.ApiDataRepository
-import com.yucelt.domain.repository.ApiRepository
+import com.yucelt.data.local.AppDatabase
+import com.yucelt.data.local.dao.FavoriteCityDao
+import com.yucelt.data.repository.DataRepositoryImpl
+import com.yucelt.domain.repository.DataRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
@@ -12,5 +15,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindApiRepository(apiDataRepository: ApiDataRepository): ApiRepository
+    abstract fun bindApiRepository(apiDataRepositoryImpl: DataRepositoryImpl): DataRepository
 }

@@ -1,6 +1,6 @@
 package com.yucelt.data.mapper
 
-import com.yucelt.data.dto.CoordDto
+import com.yucelt.data.model.dto.CoordDto
 import com.yucelt.domain.model.Coord
 
 fun CoordDto?.mapDtoToModel() = Coord(

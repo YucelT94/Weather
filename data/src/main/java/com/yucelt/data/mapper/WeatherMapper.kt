@@ -1,6 +1,6 @@
 package com.yucelt.data.mapper
 
-import com.yucelt.data.dto.WeatherDto
+import com.yucelt.data.model.dto.WeatherDto
 import com.yucelt.domain.model.Weather
 
 

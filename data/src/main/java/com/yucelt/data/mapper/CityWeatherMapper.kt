@@ -1,6 +1,6 @@
 package com.yucelt.data.mapper
 
-import com.yucelt.data.dto.CityWeatherDto
+import com.yucelt.data.model.dto.CityWeatherDto
 import com.yucelt.domain.model.CityWeather
 
 fun CityWeatherDto?.mapDtoToModel() = CityWeather(

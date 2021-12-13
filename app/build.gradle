@@ -114,6 +114,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:$Versions.retrofitMoshiVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$Versions.interceptorVersion"
 
+    // Room
+    implementation "androidx.room:room-runtime:$Versions.roomVersion"
+    implementation "androidx.room:room-ktx:$Versions.roomVersion"
+    kapt "androidx.room:room-compiler:$Versions.roomVersion"
+
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$Versions.navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$Versions.navigationVersion"

@@ -46,6 +46,9 @@ ext {
             retrofitMoshiVersion            : "2.9.0",
             interceptorVersion              : "5.0.0-alpha.2",
 
+            // Room
+            roomVersion                     : "2.3.0",
+
             // Coroutines
             coroutinesVersion               : '1.3.9',
 

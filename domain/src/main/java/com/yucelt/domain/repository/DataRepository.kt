@@ -2,7 +2,7 @@ package com.yucelt.domain.repository
 
 import com.yucelt.domain.model.CityWeather
 
-interface ApiRepository {
+interface DataRepository {
 
     suspend fun getWeatherByCityName(cityName: String?): CityWeather
 }

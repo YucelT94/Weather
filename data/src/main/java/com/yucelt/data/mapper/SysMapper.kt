@@ -1,6 +1,6 @@
 package com.yucelt.data.mapper
 
-import com.yucelt.data.dto.SysDto
+import com.yucelt.data.model.dto.SysDto
 import com.yucelt.domain.model.Sys
 
 fun SysDto?.mapDtoToModel() = Sys(
