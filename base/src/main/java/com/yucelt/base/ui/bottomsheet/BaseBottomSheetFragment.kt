@@ -16,6 +16,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.yucelt.base.R
 import com.yucelt.base.domain.ResourceState
 import com.yucelt.common.extensions.showToast
+import com.yucelt.common.extensions.toGone
+import com.yucelt.common.extensions.toVisible
 
 abstract class BaseBottomSheetFragment<DB : ViewDataBinding, VM : BaseBottomSheetViewModel> :
     BottomSheetDialogFragment() {
@@ -64,13 +66,13 @@ abstract class BaseBottomSheetFragment<DB : ViewDataBinding, VM : BaseBottomShee
             if (resourceState != null) {
                 when (resourceState.status) {
                     ResourceState.LOADING -> {
-                        progressBar?.visibility = View.VISIBLE
+                        progressBar?.toVisible()
                     }
                     ResourceState.SUCCESS -> {
-                        progressBar?.visibility = View.GONE
+                        progressBar?.toGone()
                     }
                     ResourceState.ERROR -> {
-                        progressBar?.visibility = View.GONE
+                        progressBar?.toGone()
                         resourceState.message?.let { message ->
                             (activity as AppCompatActivity).showToast(message)
                         }

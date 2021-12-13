@@ -3,7 +3,6 @@ package com.yucelt.data.mapper
 import com.yucelt.data.model.dto.WeatherDto
 import com.yucelt.domain.model.Weather
 
-
 fun List<WeatherDto>?.mapListDtoToListModel() = this?.map { it.mapDtoToModel() }
 
 fun WeatherDto?.mapDtoToModel() = Weather(

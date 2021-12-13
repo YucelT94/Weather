@@ -6,16 +6,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.yucelt.common.util.Constant
 import com.yucelt.data.model.entity.FavoriteCityEntity
+import javax.annotation.Nullable
 
 @Dao
 interface FavoriteCityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveFavoriteCity(user: FavoriteCityEntity)
+    suspend fun saveFavoriteCity(cityEntity: FavoriteCityEntity?): Long?
 
     @Query("SELECT * FROM ${Constant.FAVORITE_CITY_TABLE_NAME}")
     suspend fun getAllFavoriteCities(): List<FavoriteCityEntity>?
 
     @Query("DELETE FROM ${Constant.FAVORITE_CITY_TABLE_NAME} WHERE id = :id")
-    suspend fun deleteFavoriteCity(id: Int)
+    suspend fun deleteFavoriteCity(id: Int?): Int?
 }

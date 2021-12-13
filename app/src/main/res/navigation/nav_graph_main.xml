@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/navigation_first">
+    app:startDestination="@id/navigation_weather">
 
     <fragment
-        android:id="@+id/navigation_first"
-        android:name="com.yucelt.weather.ui.first.FirstFragment"
-        android:label="@string/nav_first"
-        tools:layout="@layout/first_fragment" />
+        android:id="@+id/navigation_weather"
+        android:name="com.yucelt.weather.ui.weather.WeatherFragment"
+        android:label="@string/nav_weather"
+        tools:layout="@layout/weather_fragment" />
 
     <fragment
-        android:id="@+id/navigation_second"
-        android:name="com.yucelt.weather.ui.second.SecondFragment"
-        android:label="@string/nav_second"
-        tools:layout="@layout/second_fragment" />
+        android:id="@+id/navigation_search"
+        android:name="com.yucelt.weather.ui.search.SearchFragment"
+        android:label="@string/nav_search"
+        tools:layout="@layout/search_fragment" />
 
     <fragment
-        android:id="@+id/navigation_third"
-        android:name="com.yucelt.weather.ui.third.ThirdFragment"
-        android:label="@string/nav_third"
-        tools:layout="@layout/third_fragment" />
+        android:id="@+id/navigation_favorite"
+        android:name="com.yucelt.weather.ui.favorite.FavoriteFragment"
+        android:label="@string/nav_favorite"
+        tools:layout="@layout/favorite_fragment" />
 </navigation>

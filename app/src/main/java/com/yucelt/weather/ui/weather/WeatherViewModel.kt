@@ -1,4 +1,4 @@
-package com.yucelt.weather.ui.first
+package com.yucelt.weather.ui.weather
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FirstViewModel @Inject constructor(
+class WeatherViewModel @Inject constructor(
     private val getWeatherByCityNameUseCase: GetWeatherByCityNameUseCase,
     application: Application
 ) : BaseViewModel(application) {
@@ -21,12 +21,18 @@ class FirstViewModel @Inject constructor(
 
     private val _resource = MutableLiveData<Resource<*>>()
 
+    private var lastKnownCityId = 0
+    private var lastKnownCityName = ""
+
     fun getWeatherByCityName(cityName: String) {
         viewModelScope.launch {
             val response = getWeatherByCityNameUseCase.execute(cityName)
             _resource.postValue(response)
             if (response.status == ResourceState.SUCCESS) {
-                println(response.data)
+                response.data?.let { data ->
+                    lastKnownCityId = data.id ?: 0
+                    lastKnownCityName = data.name ?: ""
+                }
             }
         }
     }

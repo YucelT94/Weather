@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_first"
+        android:id="@+id/navigation_weather"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="@string/nav_first" />
+        android:title="@string/nav_weather" />
 
     <item
-        android:id="@+id/navigation_second"
+        android:id="@+id/navigation_search"
         android:icon="@android:drawable/ic_menu_compass"
-        android:title="@string/nav_second" />
+        android:title="@string/nav_search" />
 
     <item
-        android:id="@+id/navigation_third"
+        android:id="@+id/navigation_favorite"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/nav_third" />
+        android:title="@string/nav_favorite" />
 </menu>

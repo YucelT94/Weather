@@ -1,4 +1,4 @@
-package com.yucelt.weather.ui.second
+package com.yucelt.weather.ui.search
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SecondViewModel @Inject constructor(
+class SearchViewModel @Inject constructor(
     application: Application
 ) : BaseViewModel(application) {
     override val resourceLiveData: MutableLiveData<Resource<*>>
