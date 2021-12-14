@@ -1,66 +1,67 @@
 package com.yucelt.data.model.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.squareup.moshi.Json
+import androidx.room.PrimaryKey
 import com.yucelt.base.data.entity.BaseEntity
 import com.yucelt.common.util.Constant
 
-@Entity(tableName = Constant.FAVORITE_CITY_TABLE_NAME)
+@Entity(tableName = Constant.CITY_WEATHER_TABLE_NAME)
 data class CityWeatherEntity(
-    @field:Json(name = "coord") val coord: CoordEntity?,
-    @field:Json(name = "weather") val weather: List<WeatherEntity>?,
-    @field:Json(name = "base") val base: String?,
-    @field:Json(name = "main") val main: MainWeatherEntity?,
-    @field:Json(name = "visibility") val visibility: Int?,
-    @field:Json(name = "wind") val wind: WindEntity?,
-    @field:Json(name = "rain") val rain: RainEntity?,
-    @field:Json(name = "clouds") val clouds: CloudsEntity?,
-    @field:Json(name = "dt") val dt: Int?,
-    @field:Json(name = "sys") val sys: SysEntity?,
-    @field:Json(name = "timezone") val timezone: Int?,
-    @field:Json(name = "id") val id: Int?,
-    @field:Json(name = "name") val name: String?,
-    @field:Json(name = "cod") val cod: Int?
+    @ColumnInfo(name = "coord") val coord: CoordEntity?,
+    @ColumnInfo(name = "weather") val weather: List<WeatherEntity>?,
+    @ColumnInfo(name = "base") val base: String?,
+    @ColumnInfo(name = "main") val main: MainWeatherEntity?,
+    @ColumnInfo(name = "visibility") val visibility: Int?,
+    @ColumnInfo(name = "wind") val wind: WindEntity?,
+    @ColumnInfo(name = "rain") val rain: RainEntity?,
+    @ColumnInfo(name = "clouds") val clouds: CloudsEntity?,
+    @ColumnInfo(name = "dt") val dt: Int?,
+    @ColumnInfo(name = "sys") val sys: SysEntity?,
+    @ColumnInfo(name = "timezone") val timezone: Int?,
+    @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") val id: Int?,
+    @ColumnInfo(name = "name") val name: String?,
+    @ColumnInfo(name = "cod") val cod: Int?
 ) : BaseEntity
 
 data class CoordEntity(
-    @field:Json(name = "lon") val lon: Double?,
-    @field:Json(name = "lat") val lat: Double?
+    @ColumnInfo(name = "lon") val lon: Double?,
+    @ColumnInfo(name = "lat") val lat: Double?
 ) : BaseEntity
 
 data class WeatherEntity(
-    @field:Json(name = "id") val id: Int?,
-    @field:Json(name = "main") val main: String?,
-    @field:Json(name = "description") val description: String?,
-    @field:Json(name = "icon") val icon: String?
+    @ColumnInfo(name = "id") val id: Int?,
+    @ColumnInfo(name = "main") val main: String?,
+    @ColumnInfo(name = "description") val description: String?,
+    @ColumnInfo(name = "icon") val icon: String?
 ) : BaseEntity
 
 data class MainWeatherEntity(
-    @field:Json(name = "temp") val temp: Double?,
-    @field:Json(name = "feels_like") val feelsLike: Double?,
-    @field:Json(name = "temp_min") val tempMin: Double?,
-    @field:Json(name = "temp_max") val tempMax: Double?,
-    @field:Json(name = "pressure") val pressure: Int?,
-    @field:Json(name = "humidity") val humidity: Int?
+    @ColumnInfo(name = "temp") val temp: Double?,
+    @ColumnInfo(name = "feels_like") val feelsLike: Double?,
+    @ColumnInfo(name = "temp_min") val tempMin: Double?,
+    @ColumnInfo(name = "temp_max") val tempMax: Double?,
+    @ColumnInfo(name = "pressure") val pressure: Int?,
+    @ColumnInfo(name = "humidity") val humidity: Int?
 ) : BaseEntity
 
 data class WindEntity(
-    @field:Json(name = "speed") val speed: Double?,
-    @field:Json(name = "deg") val deg: Int?
+    @ColumnInfo(name = "speed") val speed: Double?,
+    @ColumnInfo(name = "deg") val deg: Int?
 ) : BaseEntity
 
 data class RainEntity(
-    @field:Json(name = "1h") val oneHour: Double?
+    @ColumnInfo(name = "1h") val oneHour: Double?
 ) : BaseEntity
 
 data class CloudsEntity(
-    @field:Json(name = "all") val all: Int?
+    @ColumnInfo(name = "all") val all: Int?
 ) : BaseEntity
 
 data class SysEntity(
-    @field:Json(name = "type") val type: Int?,
-    @field:Json(name = "id") val id: Int?,
-    @field:Json(name = "country") val country: String?,
-    @field:Json(name = "sunrise") val sunrise: Int?,
-    @field:Json(name = "sunset") val sunset: Int?
+    @ColumnInfo(name = "type") val type: Int?,
+    @ColumnInfo(name = "id") val id: Int?,
+    @ColumnInfo(name = "country") val country: String?,
+    @ColumnInfo(name = "sunrise") val sunrise: Int?,
+    @ColumnInfo(name = "sunset") val sunset: Int?
 ) : BaseEntity

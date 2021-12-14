@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.yucelt.common.util.Constant
 import com.yucelt.data.BuildConfig
 import com.yucelt.data.local.AppDatabase
-import com.yucelt.data.local.dao.FavoriteCityDao
+import com.yucelt.data.local.dao.AppDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +27,7 @@ class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideFavoriteCityDao(appDatabase: AppDatabase): FavoriteCityDao {
+    fun provideFavoriteCityDao(appDatabase: AppDatabase): AppDao {
         return appDatabase.favoriteCityDao()
     }
 }
