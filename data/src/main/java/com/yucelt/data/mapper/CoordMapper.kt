@@ -18,3 +18,8 @@ fun CoordEntity?.mapEntityToModel() = Coord(
     lon = this?.lon,
     lat = this?.lat
 )
+
+fun Coord?.mapModelToEntity() = CoordEntity(
+    lon = this?.lon,
+    lat = this?.lat
+)

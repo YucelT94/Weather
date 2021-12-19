@@ -6,7 +6,7 @@ class Resource<out T> constructor(
     val message: String? = null
 ) {
     companion object {
-        fun <T> loading(): Resource<T> = Resource(ResourceState.LOADING)
+        fun <T> loading(data: T? = null): Resource<T> = Resource(ResourceState.LOADING, data)
 
         fun <T> success(data: T?): Resource<T> = Resource(ResourceState.SUCCESS, data)
 

@@ -9,3 +9,5 @@ fun WindDto?.mapDtoToModel() = Wind(speed = this?.speed, deg = this?.deg)
 fun WindDto?.mapDtoToEntity() = WindEntity(speed = this?.speed, deg = this?.deg)
 
 fun WindEntity?.mapEntityToModel() = Wind(speed = this?.speed, deg = this?.deg)
+
+fun Wind?.mapModelToEntity() = WindEntity(speed = this?.speed, deg = this?.deg)

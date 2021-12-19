@@ -27,3 +27,11 @@ fun SysEntity?.mapEntityToModel() = Sys(
     sunrise = this?.sunrise,
     sunset = this?.sunset
 )
+
+fun Sys?.mapModelToEntity() = SysEntity(
+    type = this?.type,
+    id = this?.id,
+    country = this?.country,
+    sunrise = this?.sunrise,
+    sunset = this?.sunset
+)

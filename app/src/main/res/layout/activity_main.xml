@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="activity"
-            type="com.yucelt.weather.ui.MainActivity" />
+            name="viewModel"
+            type="com.yucelt.weather.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

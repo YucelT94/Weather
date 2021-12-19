@@ -30,3 +30,12 @@ fun MainWeatherEntity?.mapEntityToModel() = MainWeather(
     pressure = this?.pressure,
     humidity = this?.humidity
 )
+
+fun MainWeather?.mapModelToEntity() = MainWeatherEntity(
+    temp = this?.temp,
+    feelsLike = this?.feelsLike,
+    tempMin = this?.tempMin,
+    tempMax = this?.tempMax,
+    pressure = this?.pressure,
+    humidity = this?.humidity
+)

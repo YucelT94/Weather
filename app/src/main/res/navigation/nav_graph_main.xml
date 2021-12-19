@@ -12,12 +12,6 @@
         tools:layout="@layout/weather_fragment" />
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.yucelt.weather.ui.search.SearchFragment"
-        android:label="@string/nav_search"
-        tools:layout="@layout/search_fragment" />
-
-    <fragment
         android:id="@+id/navigation_favorite"
         android:name="com.yucelt.weather.ui.favorite.FavoriteFragment"
         android:label="@string/nav_favorite"

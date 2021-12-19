@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class GetAllFavoriteCitiesUseCase @Inject constructor(
     private val dataRepository: DataRepository
-) : BaseUseCase<List<FavoriteCity>?, Any>() {
+) : BaseUseCase<List<FavoriteCity>?, Nothing>() {
 
-    override suspend fun executeOnBackground(params: Any?) = dataRepository.getAllFavoriteCities()
+    override suspend fun execute(params: Nothing?) = dataRepository.getAllFavoriteCities()
 }

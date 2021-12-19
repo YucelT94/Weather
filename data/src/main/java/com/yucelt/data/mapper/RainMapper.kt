@@ -9,3 +9,5 @@ fun RainDto?.mapDtoToModel() = Rain(oneHour = this?.oneHour)
 fun RainDto?.mapDtoToEntity() = RainEntity(oneHour = this?.oneHour)
 
 fun RainEntity?.mapEntityToModel() = Rain(oneHour = this?.oneHour)
+
+fun Rain?.mapModelToEntity() = RainEntity(oneHour = this?.oneHour)

@@ -30,3 +30,12 @@ fun WeatherEntity?.mapEntityToModel() = Weather(
     description = this?.description,
     icon = this?.icon
 )
+
+fun List<Weather>?.mapListModelToListEntity() = this?.map { it.mapModelToEntity() }
+
+fun Weather?.mapModelToEntity() = WeatherEntity(
+    id = this?.id,
+    main = this?.main,
+    description = this?.description,
+    icon = this?.icon
+)

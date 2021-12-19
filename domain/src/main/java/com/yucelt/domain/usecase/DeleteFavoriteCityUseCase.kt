@@ -8,6 +8,5 @@ class DeleteFavoriteCityUseCase @Inject constructor(
     private val dataRepository: DataRepository
 ) : BaseUseCase<Int?, Int>() {
 
-    override suspend fun executeOnBackground(params: Int?) =
-        dataRepository.deleteFavoriteCity(params)
+    override suspend fun execute(params: Int?) = dataRepository.deleteFavoriteCity(params)
 }

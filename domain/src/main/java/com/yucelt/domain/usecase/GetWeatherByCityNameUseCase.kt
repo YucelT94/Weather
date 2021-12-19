@@ -9,6 +9,5 @@ class GetWeatherByCityNameUseCase @Inject constructor(
     private val dataRepository: DataRepository
 ) : BaseUseCase<CityWeather, String>() {
 
-    override suspend fun executeOnBackground(params: String?) =
-        dataRepository.getWeatherByCityName(params)
+    override suspend fun execute(params: String?) = dataRepository.getWeatherByCityName(params)
 }

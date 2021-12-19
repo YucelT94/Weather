@@ -24,5 +24,5 @@ interface AppDao {
     suspend fun saveWeatherByCityName(cityWeatherEntity: CityWeatherEntity?): Long?
 
     @Query("SELECT * FROM ${Constant.CITY_WEATHER_TABLE_NAME} WHERE name = :cityName")
-    suspend fun getWeatherByCityName(cityName: String?): CityWeatherEntity?
+    suspend fun getCachedWeatherByCityName(cityName: String?): CityWeatherEntity?
 }

@@ -1,6 +1,8 @@
 package com.yucelt.common.util
 
 object Constant {
+    const val API_KEY = "ea2b8fad5846f2a27f48d270819041e7"
+
     const val DB_NAME = "Weather.db"
     const val DB_NAME_BETA = "WeatherBeta.db"
     const val CITY_WEATHER_TABLE_NAME = "city_weather"

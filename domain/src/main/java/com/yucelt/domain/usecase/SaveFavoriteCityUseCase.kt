@@ -9,6 +9,5 @@ class SaveFavoriteCityUseCase @Inject constructor(
     private val dataRepository: DataRepository
 ) : BaseUseCase<Long?, FavoriteCity>() {
 
-    override suspend fun executeOnBackground(params: FavoriteCity?) =
-        dataRepository.saveFavoriteCity(params)
+    override suspend fun execute(params: FavoriteCity?) = dataRepository.saveFavoriteCity(params)
 }

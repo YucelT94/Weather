@@ -1,30 +1,14 @@
 package com.yucelt.base.domain.usecase
 
 import com.yucelt.base.domain.Resource
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.Dispatchers
-import kotlin.coroutines.CoroutineContext
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 
 abstract class BaseUseCase<T, in Params> {
-
-    protected abstract suspend fun executeOnBackground(params: Params?): T
-
-    open suspend fun execute(params: Params? = null): Resource<T> {
-        return try {
-            Resource.loading<T>()
-            val result = executeOnBackground(params)
-            Resource.success(result)
-        } catch (cancellationException: CancellationException) {
-            Resource.error(cancellationException.localizedMessage)
-        } catch (e: Exception) {
-            Resource.error(e.localizedMessage)
+    suspend operator fun invoke(params: Params? = null): Flow<Resource<T>> = execute(params)
+        .catch { e ->
+            emit(Resource.error((e.message)))
         }
-    }
 
-    protected suspend fun <X> runAsync(
-        context: CoroutineContext = Dispatchers.IO,
-        block: suspend () -> X
-    ): X {
-        return block.invoke()
-    }
+    protected abstract suspend fun execute(params: Params? = null): Flow<Resource<T>>
 }

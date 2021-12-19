@@ -4,9 +4,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 
 object BaseConverter {
-    var moshi: Moshi = Moshi.Builder().build()
 
-    inline fun <reified T> fromEntityToJson(value: T?): String? {
+    inline fun <reified T> fromEntityToJson(value: T?, moshi: Moshi): String? {
         if (value == null) {
             return (null)
         }
@@ -14,7 +13,7 @@ object BaseConverter {
         return jsonAdapter.toJson(value)
     }
 
-    inline fun <reified T> fromJsonToEntity(value: String?): T? {
+    inline fun <reified T> fromJsonToEntity(value: String?, moshi: Moshi): T? {
         if (value == null) {
             return (null)
         }
@@ -22,7 +21,7 @@ object BaseConverter {
         return jsonAdapter.fromJson(value)
     }
 
-    inline fun <reified T> fromEntityListToJson(value: List<T>?): String? {
+    inline fun <reified T> fromEntityListToJson(value: List<T>?, moshi: Moshi): String? {
         if (value.isNullOrEmpty()) {
             return (null)
         }
@@ -31,7 +30,7 @@ object BaseConverter {
         return adapter.toJson(value)
     }
 
-    inline fun <reified T> fromJsonToEntityList(value: String?): List<T>? {
+    inline fun <reified T> fromJsonToEntityList(value: String?, moshi: Moshi): List<T>? {
         if (value == null) {
             return listOf()
         }

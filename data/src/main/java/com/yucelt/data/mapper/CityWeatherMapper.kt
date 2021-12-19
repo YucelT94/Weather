@@ -54,3 +54,20 @@ fun CityWeatherEntity?.mapEntityToModel() = CityWeather(
     name = this?.name,
     cod = this?.cod
 )
+
+fun CityWeather?.mapModelToEntity() = CityWeatherEntity(
+    coord = this?.coord?.mapModelToEntity(),
+    weather = this?.weather?.mapListModelToListEntity(),
+    base = this?.base,
+    main = this?.main?.mapModelToEntity(),
+    visibility = this?.visibility,
+    wind = this?.wind?.mapModelToEntity(),
+    rain = this?.rain?.mapModelToEntity(),
+    clouds = this?.clouds?.mapModelToEntity(),
+    dt = this?.dt,
+    sys = this?.sys?.mapModelToEntity(),
+    timezone = this?.timezone,
+    id = this?.id,
+    name = this?.name,
+    cod = this?.cod
+)

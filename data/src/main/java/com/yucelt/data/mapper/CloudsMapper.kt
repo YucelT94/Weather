@@ -9,3 +9,5 @@ fun CloudsDto?.mapDtoToModel() = Clouds(all = this?.all)
 fun CloudsDto?.mapDtoToEntity() = CloudsEntity(all = this?.all)
 
 fun CloudsEntity?.mapEntityToModel() = Clouds(all = this?.all)
+
+fun Clouds?.mapModelToEntity() = CloudsEntity(all = this?.all)

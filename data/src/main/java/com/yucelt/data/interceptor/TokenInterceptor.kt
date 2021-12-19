@@ -1,6 +1,7 @@
 package com.yucelt.data.interceptor
 
 import android.content.Context
+import com.yucelt.common.util.Constant
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.Request
@@ -16,7 +17,7 @@ class TokenInterceptor @Inject constructor(context: Context) : Interceptor {
         val originalRequest: Request = chain.request()
         val originalHttpUrl: HttpUrl = originalRequest.url
         val url: HttpUrl = originalHttpUrl.newBuilder()
-            .addQueryParameter("appid", "ea2b8fad5846f2a27f48d270819041e7")
+            .addQueryParameter("appid", Constant.API_KEY)
             .addQueryParameter("lang", Locale.getDefault().language)
             .addQueryParameter("units", "metric")
             .build()
