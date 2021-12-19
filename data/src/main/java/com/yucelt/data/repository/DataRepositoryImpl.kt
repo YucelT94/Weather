@@ -1,6 +1,7 @@
 package com.yucelt.data.repository
 
 import com.yucelt.base.domain.Resource
+import com.yucelt.common.util.Constant
 import com.yucelt.data.local.dao.AppDao
 import com.yucelt.data.mapper.*
 import com.yucelt.data.remote.ApiService
@@ -15,15 +16,21 @@ class DataRepositoryImpl @Inject constructor(
 ) : DataRepository {
 
     override suspend fun getWeatherByCityName(cityName: String?) = flow {
-        val cachedData = appDao.getCachedWeatherByCityName(cityName).mapEntityToModel()
-        emit(Resource.loading(cachedData))
         try {
+            val cachedData = appDao.getCachedWeatherByCityName(cityName)
+
+            cachedData?.let { data ->
+                emit(Resource.loading(data.mapEntityToModel()))
+            } ?: emit(Resource.loading())
+
             val response = apiService.getWeatherByCityName(cityName)
             if (response != null) {
                 appDao.saveWeatherByCityName(response.mapDtoToEntity())
                 emit(Resource.success(response.mapDtoToModel()))
             } else {
-                emit(Resource.success(cachedData))
+                cachedData?.let { data ->
+                    emit(Resource.success(data.mapEntityToModel()))
+                } ?: emit(Resource.error(Constant.EMPTY_DATA))
             }
         } catch (throwable: Throwable) {
             emit(Resource.error(throwable.localizedMessage))
@@ -35,11 +42,9 @@ class DataRepositoryImpl @Inject constructor(
         try {
             emit(Resource.loading())
             val data = appDao.saveFavoriteCity(favoriteCity.mapModelToEntity())
-            if (data == null) {
-                emit(Resource.error("Empty List"))
-            } else {
-                emit(Resource.success(data))
-            }
+            data?.let {
+                emit(Resource.success(it))
+            } ?: emit(Resource.error(Constant.EMPTY_DATA))
         } catch (throwable: Throwable) {
             emit(Resource.error(throwable.localizedMessage))
         }
@@ -49,17 +54,23 @@ class DataRepositoryImpl @Inject constructor(
         try {
             emit(Resource.loading())
             val data = appDao.getAllFavoriteCities()
-            if (data.isNullOrEmpty()) {
-                emit(Resource.error("Empty List"))
-            } else {
-                emit(Resource.success(data.mapListEntityToListModel()))
-            }
+            data?.let {
+                emit(Resource.success(it.mapListEntityToListModel()))
+            } ?: emit(Resource.error(Constant.EMPTY_LIST))
         } catch (throwable: Throwable) {
             emit(Resource.error(throwable.localizedMessage))
         }
     }
 
     override suspend fun deleteFavoriteCity(id: Int?) = flow {
-        emit(Resource.loading(appDao.deleteFavoriteCity(id)))
+        try {
+            emit(Resource.loading())
+            val data = appDao.deleteFavoriteCity(id)
+            data?.let {
+                emit(Resource.success(it))
+            } ?: emit(Resource.error(Constant.EMPTY_DATA))
+        } catch (throwable: Throwable) {
+            emit(Resource.error(throwable.localizedMessage))
+        }
     }
 }

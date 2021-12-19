@@ -11,4 +11,7 @@ object Constant {
     const val CONNECT_TIMEOUT = 15L
     const val WRITE_TIMEOUT = 30L
     const val READ_TIMEOUT = 15L
+
+    const val EMPTY_DATA = "Empty Data"
+    const val EMPTY_LIST = "Empty List"
 }
