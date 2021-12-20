@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <variable
+            name="viewObserver"
+            type="com.yucelt.weather.component.temperature.TemperatureViewObserver" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewObserver.viewDataObservableField.title != null ? context.getString(viewObserver.viewDataObservableField.title) : null}"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Temp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewObserver.viewDataObservableField.temperature}"
+            android:textSize="@dimen/temp_text_size"
+            app:layout_constraintEnd_toEndOf="@id/temp_title"
+            app:layout_constraintStart_toStartOf="@id/temp_title"
+            app:layout_constraintTop_toBottomOf="@id/temp_title"
+            tools:text="10°C" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

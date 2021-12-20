@@ -8,13 +8,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
-abstract class BaseComponentView<DB : ViewDataBinding, VM : BaseComponentViewObserver<*>>(
+abstract class BaseComponentView<DB : ViewDataBinding, VO : BaseComponentViewObserver<*>>(
     context: Context,
     attributeSet: AttributeSet? = null,
     int: Int = 0
 ) : ConstraintLayout(context, attributeSet, int) {
     var dataBinding: DB? = null
-    var viewModel: VM? = null
+    var viewObserver: VO? = null
 
     init {
         this.init(context)
@@ -24,7 +24,7 @@ abstract class BaseComponentView<DB : ViewDataBinding, VM : BaseComponentViewObs
         if (this.isInEditMode) {
             View.inflate(context, this.provideLayoutId(), this)
         } else {
-            this.viewModel = this.provideViewModel()
+            this.viewObserver = this.provideViewModel()
             this.dataBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(context),
                 this.provideLayoutId(),
@@ -35,7 +35,7 @@ abstract class BaseComponentView<DB : ViewDataBinding, VM : BaseComponentViewObs
         }
     }
 
-    abstract fun provideViewModel(): VM
+    abstract fun provideViewModel(): VO
 
     abstract fun bindViewModel(binding: DB?)
 

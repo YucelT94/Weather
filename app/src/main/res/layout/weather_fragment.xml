@@ -26,9 +26,11 @@
             android:id="@+id/city_search_view"
             android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/city_search_hint" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/pretty_date"
@@ -84,101 +86,45 @@
             app:layout_constraintTop_toBottomOf="@id/city_name"
             tools:text="Parçalı Bulutlu" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_title"
+        <com.yucelt.weather.component.temperature.TemperatureView
+            android:id="@+id/temp_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:singleLine="true"
-            android:text="@string/temp"
-            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toStartOf="@id/center_guide_line"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/weather_description" />
+            app:layout_constraintTop_toBottomOf="@id/weather_description"
+            app:viewData="@{viewModel.tempViewObserver}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewModel.cityWeatherLiveData.main.prettyTemp}"
-            android:textSize="@dimen/temp_text_size"
-            app:layout_constraintEnd_toEndOf="@id/temp_title"
-            app:layout_constraintStart_toStartOf="@id/temp_title"
-            app:layout_constraintTop_toBottomOf="@id/temp_title"
-            tools:text="10°C" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/feels_like_title"
+        <com.yucelt.weather.component.temperature.TemperatureView
+            android:id="@+id/feels_like_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:singleLine="true"
-            android:text="@string/feels_like"
-            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/center_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/weather_description" />
+            app:layout_constraintTop_toBottomOf="@id/weather_description"
+            app:viewData="@{viewModel.feelsLikeViewObserver}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/feels_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewModel.cityWeatherLiveData.main.prettyFeelsLike}"
-            android:textSize="@dimen/temp_text_size"
-            app:layout_constraintEnd_toEndOf="@id/feels_like_title"
-            app:layout_constraintStart_toStartOf="@id/feels_like_title"
-            app:layout_constraintTop_toBottomOf="@id/feels_like_title"
-            tools:text="10°C" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_min_title"
+        <com.yucelt.weather.component.temperature.TemperatureView
+            android:id="@+id/temp_min_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:singleLine="true"
-            android:text="@string/temp_min"
-            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toStartOf="@id/center_guide_line"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/temp" />
+            app:layout_constraintTop_toBottomOf="@id/temp_view"
+            app:viewData="@{viewModel.tempMinViewObserver}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_min"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewModel.cityWeatherLiveData.main.prettyTempMin}"
-            android:textSize="@dimen/temp_text_size"
-            app:layout_constraintEnd_toEndOf="@id/temp_min_title"
-            app:layout_constraintStart_toStartOf="@id/temp_min_title"
-            app:layout_constraintTop_toBottomOf="@id/temp_min_title"
-            tools:text="10°C" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_max_title"
+        <com.yucelt.weather.component.temperature.TemperatureView
+            android:id="@+id/temp_max_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
-            android:singleLine="true"
-            android:text="@string/temp_max"
-            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/center_guide_line"
-            app:layout_constraintTop_toBottomOf="@id/feels_like" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_max"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewModel.cityWeatherLiveData.main.prettyTempMax}"
-            android:textSize="@dimen/temp_text_size"
-            app:layout_constraintEnd_toEndOf="@id/temp_max_title"
-            app:layout_constraintStart_toStartOf="@id/temp_max_title"
-            app:layout_constraintTop_toBottomOf="@id/temp_max_title"
-            tools:text="10°C" />
+            app:layout_constraintTop_toBottomOf="@id/feels_like_view"
+            app:viewData="@{viewModel.tempMaxViewObserver}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_favorite_fab"
