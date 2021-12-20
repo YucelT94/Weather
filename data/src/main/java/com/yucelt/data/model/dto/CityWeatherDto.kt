@@ -12,7 +12,7 @@ data class CityWeatherDto(
     @Json(name = "wind") val wind: WindDto?,
     @Json(name = "rain") val rain: RainDto?,
     @Json(name = "clouds") val clouds: CloudsDto?,
-    @Json(name = "dt") val dt: Int?,
+    @Json(name = "dt") val dt: Long?,
     @Json(name = "sys") val sys: SysDto?,
     @Json(name = "timezone") val timezone: Int?,
     @Json(name = "id") val id: Int?,

@@ -16,7 +16,7 @@ data class CityWeatherEntity(
     @ColumnInfo(name = "wind") val wind: WindEntity?,
     @ColumnInfo(name = "rain") val rain: RainEntity?,
     @ColumnInfo(name = "clouds") val clouds: CloudsEntity?,
-    @ColumnInfo(name = "dt") val dt: Int?,
+    @ColumnInfo(name = "dt") val dt: Long?,
     @ColumnInfo(name = "sys") val sys: SysEntity?,
     @ColumnInfo(name = "timezone") val timezone: Int?,
     @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id") val id: Int?,

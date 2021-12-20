@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,22 +15,170 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_guide_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/city_search_view"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
+            android:id="@+id/pretty_date"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.cityWeatherLiveData.main.feelsLike.toString()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:gravity="end"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.prettyDate}"
+            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/city_search_view" />
+            app:layout_constraintTop_toBottomOf="@id/city_search_view"
+            tools:text="20 Aralık Pazartesi, 14:43" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="@dimen/default_icon_size"
+            android:layout_height="@dimen/default_icon_size"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/half_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pretty_date"
+            app:setImageResId="@{viewModel.cityWeatherLiveData.weather.iconResId}"
+            tools:src="@drawable/ic_clear" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/city_name"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.name}"
+            android:textSize="@dimen/primary_title_text_size"
+            app:layout_constraintBottom_toTopOf="@id/weather_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/weather_icon"
+            app:layout_constraintTop_toTopOf="@id/weather_icon"
+            tools:text="İstanbul" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/weather_description"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.weather.description}"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintBottom_toBottomOf="@id/weather_icon"
+            app:layout_constraintEnd_toEndOf="@id/city_name"
+            app:layout_constraintStart_toStartOf="@id/city_name"
+            app:layout_constraintTop_toBottomOf="@id/city_name"
+            tools:text="Parçalı Bulutlu" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:singleLine="true"
+            android:text="@string/temp"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintEnd_toStartOf="@id/center_guide_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weather_description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.main.prettyTemp}"
+            android:textSize="@dimen/temp_text_size"
+            app:layout_constraintEnd_toEndOf="@id/temp_title"
+            app:layout_constraintStart_toStartOf="@id/temp_title"
+            app:layout_constraintTop_toBottomOf="@id/temp_title"
+            tools:text="10°C" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/feels_like_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:singleLine="true"
+            android:text="@string/feels_like"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/center_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/weather_description" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/feels_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.main.prettyFeelsLike}"
+            android:textSize="@dimen/temp_text_size"
+            app:layout_constraintEnd_toEndOf="@id/feels_like_title"
+            app:layout_constraintStart_toStartOf="@id/feels_like_title"
+            app:layout_constraintTop_toBottomOf="@id/feels_like_title"
+            tools:text="10°C" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_min_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:singleLine="true"
+            android:text="@string/temp_min"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintEnd_toStartOf="@id/center_guide_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/temp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.main.prettyTempMin}"
+            android:textSize="@dimen/temp_text_size"
+            app:layout_constraintEnd_toEndOf="@id/temp_min_title"
+            app:layout_constraintStart_toStartOf="@id/temp_min_title"
+            app:layout_constraintTop_toBottomOf="@id/temp_min_title"
+            tools:text="10°C" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_max_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:singleLine="true"
+            android:text="@string/temp_max"
+            android:textSize="@dimen/secondary_title_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/center_guide_line"
+            app:layout_constraintTop_toBottomOf="@id/feels_like" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/temp_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.main.prettyTempMax}"
+            android:textSize="@dimen/temp_text_size"
+            app:layout_constraintEnd_toEndOf="@id/temp_max_title"
+            app:layout_constraintStart_toStartOf="@id/temp_max_title"
+            app:layout_constraintTop_toBottomOf="@id/temp_max_title"
+            tools:text="10°C" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_favorite_fab"

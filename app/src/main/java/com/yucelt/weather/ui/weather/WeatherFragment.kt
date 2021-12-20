@@ -1,6 +1,7 @@
 package com.yucelt.weather.ui.weather
 
 import com.yucelt.base.ui.fragment.BaseFragment
+import com.yucelt.common.extensions.hideKeyboard
 import com.yucelt.domain.model.FavoriteCity
 import com.yucelt.weather.R
 import com.yucelt.weather.databinding.WeatherFragmentBinding
@@ -34,6 +35,7 @@ class WeatherFragment : BaseFragment<WeatherFragmentBinding, WeatherViewModel>()
     private val searchListener = object :
         androidx.appcompat.widget.SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean {
+            activity?.hideKeyboard()
             query?.trim()?.let { viewModel?.getWeatherByCityName(it) }
             return true
         }

@@ -9,7 +9,7 @@
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
             android:id="@+id/progress_bar"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:indeterminate="true"
             android:visibility="gone"

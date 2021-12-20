@@ -35,8 +35,8 @@
         <fragment
             android:id="@+id/main_navigation_host"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="@dimen/match_constraints"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
             app:layout_constraintHeight_default="spread"
@@ -48,12 +48,13 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:background="?android:attr/windowBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/main_bottom_navigation" />
+            app:menu="@menu/main_bottom_navigation"
+            app:navigationIcon="@drawable/ic_clear_night" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

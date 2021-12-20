@@ -1,24 +1,16 @@
 package com.yucelt.data.mapper
 
+import com.yucelt.common.extensions.toPrettyDate
 import com.yucelt.data.model.dto.CityWeatherDto
 import com.yucelt.data.model.entity.CityWeatherEntity
 import com.yucelt.domain.model.CityWeather
 
 fun CityWeatherDto?.mapDtoToModel() = CityWeather(
-    coord = this?.coord?.mapDtoToModel(),
     weather = this?.weather?.mapListDtoToListModel(),
-    base = this?.base,
     main = this?.main?.mapDtoToModel(),
-    visibility = this?.visibility,
-    wind = this?.wind?.mapDtoToModel(),
-    rain = this?.rain?.mapDtoToModel(),
-    clouds = this?.clouds?.mapDtoToModel(),
-    dt = this?.dt,
-    sys = this?.sys?.mapDtoToModel(),
-    timezone = this?.timezone,
+    prettyDate = this?.dt?.toPrettyDate(),
     id = this?.id,
     name = this?.name,
-    cod = this?.cod
 )
 
 fun CityWeatherDto?.mapDtoToEntity() = CityWeatherEntity(
@@ -39,35 +31,9 @@ fun CityWeatherDto?.mapDtoToEntity() = CityWeatherEntity(
 )
 
 fun CityWeatherEntity?.mapEntityToModel() = CityWeather(
-    coord = this?.coord?.mapEntityToModel(),
     weather = this?.weather?.mapListEntityToListModel(),
-    base = this?.base,
     main = this?.main?.mapEntityToModel(),
-    visibility = this?.visibility,
-    wind = this?.wind?.mapEntityToModel(),
-    rain = this?.rain?.mapEntityToModel(),
-    clouds = this?.clouds?.mapEntityToModel(),
-    dt = this?.dt,
-    sys = this?.sys?.mapEntityToModel(),
-    timezone = this?.timezone,
+    prettyDate = this?.dt?.toPrettyDate(),
     id = this?.id,
     name = this?.name,
-    cod = this?.cod
-)
-
-fun CityWeather?.mapModelToEntity() = CityWeatherEntity(
-    coord = this?.coord?.mapModelToEntity(),
-    weather = this?.weather?.mapListModelToListEntity(),
-    base = this?.base,
-    main = this?.main?.mapModelToEntity(),
-    visibility = this?.visibility,
-    wind = this?.wind?.mapModelToEntity(),
-    rain = this?.rain?.mapModelToEntity(),
-    clouds = this?.clouds?.mapModelToEntity(),
-    dt = this?.dt,
-    sys = this?.sys?.mapModelToEntity(),
-    timezone = this?.timezone,
-    id = this?.id,
-    name = this?.name,
-    cod = this?.cod
 )
