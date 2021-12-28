@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Weather</string>
+
+    <string name="nav_weather">Weather</string>
+    <string name="nav_favorite">Favorite</string>
+
+    <string name="city_search_hint">Search Location</string>
+
+    <string name="temp">Temp</string>
+    <string name="feels_like">Feels Like</string>
+    <string name="temp_min">Temp Min</string>
+    <string name="temp_max">Temp Max</string>
+</resources>

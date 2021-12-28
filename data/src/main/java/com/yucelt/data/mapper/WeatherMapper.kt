@@ -4,7 +4,6 @@ import com.yucelt.common.extensions.capitalizeFirstLetter
 import com.yucelt.data.model.dto.WeatherDto
 import com.yucelt.data.model.entity.WeatherEntity
 import com.yucelt.domain.model.Weather
-import com.yucelt.domain.model.WeatherIcon
 
 fun List<WeatherDto>?.mapListDtoToListModel() = this?.get(0)?.mapDtoToModel()
 
@@ -12,7 +11,6 @@ fun WeatherDto?.mapDtoToModel() = Weather(
     id = this?.id,
     main = this?.main,
     description = this?.description?.capitalizeFirstLetter(),
-    iconResId = WeatherIcon.getIconId(this?.icon)
 )
 
 fun List<WeatherDto>?.mapListDtoToListEntity() = this?.map { it.mapDtoToEntity() }
@@ -30,5 +28,4 @@ fun WeatherEntity?.mapEntityToModel() = Weather(
     id = this?.id,
     main = this?.main,
     description = this?.description?.capitalizeFirstLetter(),
-    iconResId = WeatherIcon.getIconId(this?.icon)
 )

@@ -12,32 +12,42 @@
             type="com.yucelt.weather.component.temperature.TemperatureViewObserver" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_margin"
+        android:background="@color/card_background"
+        app:cardCornerRadius="@dimen/small_margin">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewObserver.viewDataObservableField.title != null ? context.getString(viewObserver.viewDataObservableField.title) : null}"
-            android:textSize="@dimen/secondary_title_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Temp" />
+            android:background="@color/card_background"
+            android:padding="@dimen/default_margin">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:text="@{viewObserver.viewDataObservableField.temperature}"
-            android:textSize="@dimen/temp_text_size"
-            app:layout_constraintEnd_toEndOf="@id/temp_title"
-            app:layout_constraintStart_toStartOf="@id/temp_title"
-            app:layout_constraintTop_toBottomOf="@id/temp_title"
-            tools:text="10°C" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temp_title"
+                style="@style/Weather.TextView.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{viewObserver.viewDataObservableField.title != null ? context.getString(viewObserver.viewDataObservableField.title) : null}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Temp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/temp"
+                style="@style/Weather.TextView.XX.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{viewObserver.viewDataObservableField.temperature}"
+                app:layout_constraintEnd_toEndOf="@id/temp_title"
+                app:layout_constraintStart_toStartOf="@id/temp_title"
+                app:layout_constraintTop_toBottomOf="@id/temp_title"
+                tools:text="10°C" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -1,6 +1,5 @@
 package com.yucelt.domain.model
 
-import androidx.annotation.DrawableRes
 import com.yucelt.base.domain.model.BaseModel
 
 data class CityWeather(
@@ -15,7 +14,6 @@ data class Weather(
     val id: Int?,
     val main: String?,
     val description: String?,
-    @DrawableRes val iconResId: Int?
 ) : BaseModel
 
 data class MainWeather(

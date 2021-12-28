@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 apply from: '../dependencies.gradle'
@@ -65,14 +67,11 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':resource')
-
     // AndroidX & Jetpack
     implementation "androidx.core:core-ktx:$Versions.coreKtxVersion"
     implementation "androidx.appcompat:appcompat:$Versions.appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$Versions.constraintVersion"
     implementation "com.google.android.material:material:$Versions.materialVersion"
-    implementation project(path: ':common')
 
     // Testing
     testImplementation "junit:junit:$Versions.junitVersion"
@@ -81,11 +80,5 @@ dependencies {
 
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$Versions.daggerHiltCoreVersion"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$Versions.daggerHiltVersion"
-
-    // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$Versions.navigationVersion"
-    implementation "androidx.navigation:navigation-ui-ktx:$Versions.navigationVersion"
-    implementation "androidx.navigation:navigation-dynamic-features-fragment:$Versions.navigationVersion"
-    androidTestImplementation "androidx.navigation:navigation-testing:$Versions.navigationVersion"
+    kapt "com.google.dagger:hilt-compiler:$Versions.daggerHiltCoreVersion"
 }

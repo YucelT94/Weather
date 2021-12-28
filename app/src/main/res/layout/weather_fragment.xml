@@ -22,6 +22,16 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/weather_background"
+            android:layout_width="@dimen/match_constraints"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/weather_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/city_search_view"
             android:layout_width="@dimen/match_constraints"
@@ -41,57 +51,56 @@
             android:gravity="end"
             android:singleLine="true"
             android:text="@{viewModel.cityWeatherLiveData.prettyDate}"
-            android:textSize="@dimen/secondary_title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/city_search_view"
             tools:text="20 Aralık Pazartesi, 14:43" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/weather_icon"
-            android:layout_width="@dimen/default_icon_size"
-            android:layout_height="@dimen/default_icon_size"
-            android:layout_marginStart="@dimen/default_margin"
-            android:layout_marginTop="@dimen/half_margin"
-            android:tint="@color/color_on_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pretty_date"
-            app:setImageResId="@{viewModel.cityWeatherLiveData.weather.iconResId}"
-            tools:src="@drawable/ic_clear" />
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/city_name"
-            android:layout_width="@dimen/match_constraints"
+            style="@style/Weather.TextView.X.Large"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/half_margin"
-            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="34dp"
             android:singleLine="true"
             android:text="@{viewModel.cityWeatherLiveData.name}"
-            android:textSize="@dimen/primary_title_text_size"
-            app:layout_constraintBottom_toTopOf="@id/weather_description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/weather_icon"
-            app:layout_constraintTop_toTopOf="@id/weather_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pretty_date"
             tools:text="İstanbul" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/city_temp"
+            style="@style/Weather.TextView.XX.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/half_margin"
+            android:singleLine="true"
+            android:text="@{viewModel.cityWeatherLiveData.main.prettyTemp}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city_name"
+            tools:text="15 °C" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/weather_description"
-            android:layout_width="@dimen/match_constraints"
+            style="@style/Weather.TextView.Medium"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="@{viewModel.cityWeatherLiveData.weather.description}"
-            android:textSize="@dimen/secondary_title_text_size"
-            app:layout_constraintBottom_toBottomOf="@id/weather_icon"
-            app:layout_constraintEnd_toEndOf="@id/city_name"
-            app:layout_constraintStart_toStartOf="@id/city_name"
-            app:layout_constraintTop_toBottomOf="@id/city_name"
-            tools:text="Parçalı Bulutlu" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/city_temp"
+            tools:text="Very Cloudy" />
 
         <com.yucelt.weather.component.temperature.TemperatureView
             android:id="@+id/temp_view"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
+            android:padding="@dimen/half_margin"
             app:layout_constraintEnd_toStartOf="@id/center_guide_line"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weather_description"
@@ -99,9 +108,10 @@
 
         <com.yucelt.weather.component.temperature.TemperatureView
             android:id="@+id/feels_like_view"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/default_margin"
+            android:padding="@dimen/half_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/center_guide_line"
             app:layout_constraintTop_toBottomOf="@id/weather_description"
@@ -109,9 +119,9 @@
 
         <com.yucelt.weather.component.temperature.TemperatureView
             android:id="@+id/temp_min_view"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
+            android:padding="@dimen/half_margin"
             app:layout_constraintEnd_toStartOf="@id/center_guide_line"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/temp_view"
@@ -119,9 +129,9 @@
 
         <com.yucelt.weather.component.temperature.TemperatureView
             android:id="@+id/temp_max_view"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/match_constraints"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_margin"
+            android:padding="@dimen/half_margin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/center_guide_line"
             app:layout_constraintTop_toBottomOf="@id/feels_like_view"
@@ -135,6 +145,6 @@
             android:layout_marginBottom="@dimen/default_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@drawable/ic_favorite" />
+            app:srcCompat="@drawable/ic_plus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
